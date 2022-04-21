@@ -33,7 +33,7 @@ local greek_postfix_completions = function()
 end
 
 local postfix_completions = function()
-  local re = "sin|cos|tan|csc|sec|cot|ln|log|exp|star|perp|pm|int"
+  local re = "sin|cos|tan|csc|sec|cot|ln|log|exp|perp|pm|int"
 
   local build = build_with_priority(postfix_trig, postfix_node, 100)
   return vim.tbl_map(build, vim.split(re, "|"))
@@ -41,7 +41,7 @@ end
 
 local math_rA_no_backslash = {}
 
-vim.list_extend(math_rA_no_backslash, greek_postfix_completions())
+-- vim.list_extend(math_rA_no_backslash, greek_postfix_completions())
 vim.list_extend(math_rA_no_backslash, postfix_completions())
 vim.list_extend(math_rA_no_backslash, { build_snippet(postfix_trig, postfix_node, "q?quad", 200) })
 
