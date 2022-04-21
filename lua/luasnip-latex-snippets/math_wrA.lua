@@ -14,6 +14,31 @@ local frac_no_parens = {
   i(0),
 }
 
+local vec_node = {
+  f(function(_, snip)
+    return string.format("\\vec{%s}", snip.captures[1])
+  end, {}),
+}
+local bold_node = {
+  f(function(_, snip)
+    return string.format("\\mathbf{%s}", snip.captures[1])
+  end, {}),
+}
+local vec_node_single = {
+  f(function(_, snip)
+    local first = string.sub(snip.captures[1], 1, -2)
+    local last = string.sub(snip.captures[1], -1, -1)
+    return string.format("%s\\vec{%s}", first, last)
+  end, {}),
+}
+local bold_node_single = {
+  f(function(_, snip)
+    local first = string.sub(snip.captures[1], 1, -2)
+    local last = string.sub(snip.captures[1], -1, -1)
+    return string.format("%s\\mathbf{%s}", first, last)
+  end, {}),
+}
+
 local frac = s({
   priority = 1000,
   trig = ".*%)/",
@@ -57,7 +82,7 @@ local math_wrA = {
   frac,
 
   s({
-    trig = "([%a])(%d)",
+    trig = "([%g]*[%a]+}*)(%d)",
     name = "auto subscript",
   }, {
     f(function(_, snip)
@@ -67,7 +92,7 @@ local math_wrA = {
   }),
 
   s({
-    trig = "([%a])_(%d%d)",
+    trig = "([%a]+)_(%d%d)",
     name = "auto subscript 2",
   }, {
     f(function(_, snip)
@@ -100,6 +125,12 @@ local math_wrA = {
     trig = "(%w+)/",
     name = "Fraction no ()",
   }, vim.deepcopy(frac_no_parens)),
+  
+  -- Bold and vector
+  s({ trig = "(\\[%a]+)(%.,)" }, vim.deepcopy(vec_node)),
+  s({ trig = "(\\[%a]+)(,%.)" }, vim.deepcopy(bold_node)),
+  s({ trig = "([%a]+)(%.,)" }, vim.deepcopy(vec_node_single)),
+  s({ trig = "([%a]+)(,%.)" }, vim.deepcopy(bold_node_single)),
 }
 
 return math_wrA
