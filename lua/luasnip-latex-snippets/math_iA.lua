@@ -95,7 +95,7 @@ local math_iA = {
   ls.parser.parse_snippet({ trig = ">>", name = ">>" }, "\\gg"),
   ls.parser.parse_snippet({ trig = "<<", name = "<<" }, "\\ll"),
 
-  ls.parser.parse_snippet({ trig = "tt", name = "text" }, "\\text{$1}$0"),
+  ls.parser.parse_snippet({ trig = ",,", name = "text" }, "\\text{$1}$0"),
   ls.parser.parse_snippet({ trig = "stt", name = "text subscript" }, "_\\text{$1} $0"),
 
   ls.parser.parse_snippet({ trig = "xx", name = "cross" }, "\\times "),
@@ -147,7 +147,6 @@ local math_iA = {
   ls.parser.parse_snippet({ trig = "star", name = "star" }, "^* $0"),
   ls.parser.parse_snippet({ trig = "()", name = "parenthesis" }, "\\left( $1 \\right)$0"),
   ls.parser.parse_snippet({ trig = "Tr", name = "trace" }, "\\text{Tr}\\left( $1 \\right)$0"),
-  ls.parser.parse_snippet({ trig = ",,", name = "text" }, "\\text{$1}$0"),
 }
 
 return math_iA
