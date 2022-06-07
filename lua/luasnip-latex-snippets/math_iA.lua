@@ -6,7 +6,7 @@ local with_priority = require("luasnip-latex-snippets.util.utils").with_priority
 local math_iA = {
   s(
     {
-      trig = "(%a)bar",
+      trig = "(\\*%a+)bar",
       wordTrig = false,
       regTrig = true,
       name = "bar",
@@ -18,7 +18,7 @@ local math_iA = {
   ),
   s(
     {
-      trig = "(%a)hat",
+      trig = "(\\*%a+)hat",
       wordTrig = false,
       regTrig = true,
       name = "hat",
@@ -30,7 +30,7 @@ local math_iA = {
   ),
   s(
     {
-      trig = "(%a)tilde",
+      trig = "(\\*%a+)tilde",
       wordTrig = false,
       regTrig = true,
       name = "tilde",
