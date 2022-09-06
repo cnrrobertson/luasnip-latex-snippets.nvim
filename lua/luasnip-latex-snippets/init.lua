@@ -89,6 +89,37 @@ M.init = function()
     default_priority = 0,
   })
 
+  ls.add_snippets("tex", {
+    ls.parser.parse_snippet(
+    {trig="template", name = "Template"},
+      [[
+        \\documentclass[a4paper]{article}
+
+        \\usepackage[utf8]{inputenc}
+        \\usepackage[T1]{fontenc}
+        \\usepackage{textcomp}
+        \\usepackage{amsmath, amssymb}
+        \\usepackage{xcolor}
+        \\usepackage{minipage}
+
+        % figure support
+        \\usepackage{import}
+        \\usepackage{xifthen}
+        \\pdfminorversion=7
+        \\usepackage{pdfpages}
+        \\usepackage{transparent}
+        \\usepackage{subcaption}
+
+        \\pdfsuppresswarningpagegroup=1
+
+        \\begin{document}
+          $0
+        \\end{document}
+      ]]
+    )
+    }
+    )
+
   -- "Basic template": {
   --     "body": [
   --       "\\documentclass[a4paper]{article}",
@@ -107,7 +138,7 @@ M.init = function()
   --       "\\usepackage{transparent}",
   --       "\\newcommand{\\incfig}[1]{%",
   --       "\t\\def\\svgwidth{\\columnwidth}",
-  --       "\t\\import{./figures/}{#1.pdf_tex}",
+  --       "\t\\importj{./figures/}{#1.pdf_tex}",
   --       "}",
   --       "",
   --       "\\pdfsuppresswarningpagegroup=1",
